@@ -9,11 +9,11 @@ import { usePathname } from "next/navigation";
  * Fill in each `href` later (e.g. '/skills'). Until then they stay empty.
  */
 const NAV_LINKS = [
-  { label: "Skills", href: "/skill" },
-  { label: "About Me", href: "/about" },
-  { label: "Education", href: "/education" },
   { label: "Projects", href: "" },
+  { label: "Skills", href: "/skill" },
   { label: "Contact", href: "/contract" },
+  { label: "Education", href: "/education" },
+  { label: "About Me", href: "/about" },
 ];
 
 const NavBar = () => {
