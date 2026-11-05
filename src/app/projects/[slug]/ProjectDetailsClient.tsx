@@ -792,7 +792,7 @@ export default function ProjectDetailsClient({
           </Link>
 
           <Link
-            href="/#projects"
+            href="/projects"
             className="rounded-full bg-gradient-to-r from-[#3B82F6] to-[#00E5FF] px-6 py-2.5 text-sm font-semibold text-[#0B0F19] transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,229,255,0.4)]"
           >
             All Projects
