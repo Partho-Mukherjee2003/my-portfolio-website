@@ -55,7 +55,7 @@ export default function IntroSlide({ isActive }: Props) {
           variants={fadeUp}
           className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start"
         >
-          <GlowButton href="/contact">Contact Me</GlowButton>
+          <GlowButton href="/contract">Contact Me</GlowButton>
           <GlowButton
             href="/Partho_Mukherjee_Resume.pdf"
             variant="outline"
