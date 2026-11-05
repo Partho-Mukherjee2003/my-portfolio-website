@@ -1,0 +1,396 @@
+{
+  "projects": [
+    {
+      "id": "bookNook",
+      "name": "BookNook",
+      "tagline": "Add a book, borrow a book, return a book.",
+      "type": "Full-stack web application",
+      "status": "Live / Deployed",
+      "images": [
+        "/Pictures/p1.1.png",
+        "/Pictures/p1.2.png",
+        "/Pictures/p1.3.png",
+        "/Pictures/p1.4.png"
+      ],
+      "author": {
+        "name": "Partho Mukherjee",
+        "email": "parthomukherjee582@gmail.com",
+        "github": "https://github.com/Partho-Mukherjee2003"
+      },
+      "liveLink": "https://book-nook-client-site.vercel.app/",
+      "serverLiveLink": "https://booknook-server-site.vercel.app/",
+      "clientRepo": "https://github.com/Partho-Mukherjee2003/book-nook-client-site",
+      "serverRepo": "https://github.com/Partho-Mukherjee2003/book-nook-client-site",
+      "shortDescription": "BookNook is a small online library where readers can browse a shared collection, add their own books, borrow a book for 14 days, and return it when done. Each user manages only their own books and borrows, protected by Better Auth and JWT verification.",
+      "features": [
+        "Secure authentication with Better Auth (email/password and Google login)",
+        "JWT-protected API verified against the Better Auth JWKS endpoint",
+        "Private routes protected by a proxy with redirect back after login",
+        "Persistent login on page reload",
+        "Home slider built with Swiper.js",
+        "New Arrivals section showing the 6 latest books from MongoDB",
+        "All Books page with responsive equal-height cards",
+        "Book Details page with owner info and Borrow button",
+        "Add Book form with imgbb image upload and category select",
+        "My Books: edit in a pre-filled modal, delete with confirmation modal",
+        "Borrow system with 14-day return date",
+        "Duplicate borrow prevention (409 conflict)",
+        "My Borrows table with Return Book action",
+        "Toast notifications for all success and error messages",
+        "Loading spinners",
+        "Custom 404 page",
+        "Dynamic page titles on every route",
+        "Fully responsive design (mobile, tablet, desktop)",
+        "Password validation (min 6 chars, uppercase and lowercase)"
+      ],
+      "keyTechnologies": [
+        "Express.js",
+        "Node.js",
+        "Next.js 16 (App Router)",
+        "MongoDB Atlas",
+        "Better Auth",
+        "TypeScript",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "JWT (jose)",
+        "Swiper.js",
+        "Sonner",
+        "Lucide React",
+        "React Icons",
+        "imgbb API",
+        "Vercel"
+      ],
+      "techStack": {
+        "frontend": {
+          "framework": "Next.js 16 (App Router)",
+          "language": "TypeScript",
+          "styling": "Tailwind CSS",
+          "uiComponents": "shadcn/ui",
+          "authentication": "Better Auth (MongoDB adapter, JWT plugin)",
+          "slider": "Swiper.js",
+          "notifications": "Sonner",
+          "icons": ["Lucide React", "React Icons"],
+          "imageUpload": "imgbb API"
+        },
+        "backend": {
+          "runtime": "Node.js 20+",
+          "framework": "Express.js",
+          "database": "MongoDB Atlas (official driver)",
+          "authVerification": "jose (JWT + remote JWKS)",
+          "other": ["cors", "dotenv", "nodemon (dev)"]
+        },
+        "database": {
+          "name": "BooksForBooknook",
+          "collections": ["latestBooks", "myAddedBook", "borrows"]
+        },
+        "deployment": {
+          "client": "Vercel",
+          "server": "Vercel"
+        }
+      },
+      "architecture": {
+        "pattern": "Separate client and server repositories",
+        "authFlow": [
+          "User registers or logs in with Better Auth (email/password or Google)",
+          "Proxy checks the session cookie before opening private pages",
+          "Client requests a JWT and sends it as Authorization: Bearer <token>",
+          "Server verifies the token via JWKS (signature, issuer, audience)",
+          "Server uses the verified email to return or change only that user's data"
+        ]
+      },
+      "pages": [
+        { "name": "Home", "route": "/", "access": "public" },
+        { "name": "All Books", "route": "/AllBooks", "access": "public" },
+        { "name": "Book Details", "route": "/AllBooks/[id]", "access": "private" },
+        { "name": "Add Book", "route": "/add-book", "access": "private" },
+        { "name": "My Books", "route": "/my-books", "access": "private" },
+        { "name": "My Borrows", "route": "/my-borrows", "access": "private" },
+        { "name": "My Profile", "route": "/profile", "access": "private" },
+        { "name": "Login", "route": "/login", "access": "public" },
+        { "name": "Register", "route": "/register", "access": "public" },
+        { "name": "404 Not Found", "route": "*", "access": "public" }
+      ],
+      "apiBaseUrl": "https://booknook-server-site.vercel.app",
+      "apiEndpoints": [
+        { "method": "GET", "path": "/", "description": "Server health check", "auth": "public" },
+        { "method": "GET", "path": "/latestBooks", "description": "Latest 6 books, newest first", "auth": "public" },
+        { "method": "GET", "path": "/allbooks", "description": "All books", "auth": "public" },
+        { "method": "GET", "path": "/allbooks/:id", "description": "One book by ID", "auth": "jwt" },
+        { "method": "POST", "path": "/allbooks", "description": "Add a book to the main collection", "auth": "public (planned: jwt)" },
+        { "method": "POST", "path": "/my-books", "description": "Add a book (owner email from token)", "auth": "jwt" },
+        { "method": "GET", "path": "/my-books", "description": "Get the logged-in user's books", "auth": "jwt" },
+        { "method": "PUT", "path": "/my-books/:id", "description": "Update a book (owner only)", "auth": "jwt" },
+        { "method": "DELETE", "path": "/my-books/:id", "description": "Delete a book (owner only)", "auth": "jwt" },
+        { "method": "POST", "path": "/borrows", "description": "Borrow a book", "auth": "request-based (planned: jwt)" },
+        { "method": "GET", "path": "/borrows?email=", "description": "Get one user's borrowed books", "auth": "request-based (planned: jwt)" },
+        { "method": "DELETE", "path": "/borrows/:id?email=", "description": "Return a book", "auth": "request-based (planned: jwt)" }
+      ],
+      "statusCodes": {
+        "200/201": "Success / created",
+        "400": "Invalid ID or missing fields",
+        "401": "Missing, invalid or expired token",
+        "404": "Book or record not found",
+        "409": "Book already borrowed by this user",
+        "500": "Server error"
+      },
+      "dataModels": {
+        "latestBooks": ["_id", "title", "author", "category", "image", "description"],
+        "myAddedBook": [
+          "_id", "title", "author", "category (Fiction | Science | History | Kids | Others)",
+          "image", "description", "userName", "userEmail", "addedAt", "updatedAt"
+        ],
+        "borrows": [
+          "_id", "bookId", "bookTitle", "bookImage", "userName", "userEmail",
+          "borrowDate", "returnDate (borrowDate + 14 days)", "status"
+        ]
+      },
+      "environmentVariables": {
+        "client": [
+          "BETTER_AUTH_URL",
+          "NEXT_PUBLIC_BETTER_AUTH_URL",
+          "BETTER_AUTH_SECRET",
+          "MONGODB_USERNAME",
+          "MONGODB_PASSWORD",
+          "GOOGLE_CLIENT_ID",
+          "GOOGLE_CLIENT_SECRET",
+          "NEXT_PUBLIC_API_URL",
+          "NEXT_PUBLIC_IMGBB_API_KEY"
+        ],
+        "server": ["PORT", "MONGODB_USERNAME", "MONGODB_PASSWORD", "CLIENT_URL"]
+      },
+      "scripts": {
+        "client": {
+          "dev": "Start the development server",
+          "build": "Create a production build",
+          "start": "Run the production build",
+          "lint": "Run ESLint"
+        },
+        "server": {
+          "start": "nodemon index.js"
+        }
+      },
+      "prerequisites": [
+        "Node.js 20 or newer",
+        "MongoDB Atlas cluster",
+        "Google OAuth client",
+        "imgbb API key",
+        "BookNook server running locally or deployed"
+      ],
+      "localUrls": {
+        "client": "http://localhost:3000",
+        "server": "http://localhost:5000"
+      },
+      "deploymentNotes": [
+        "Add all environment variables in Vercel with production URLs",
+        "Add Google OAuth redirect URI: https://book-nook-client-site.vercel.app/api/auth/callback/google",
+        "Allow Vercel network access in MongoDB Atlas (0.0.0.0/0)",
+        "Server CLIENT_URL must exactly match client BETTER_AUTH_URL (no trailing slash)",
+        "Redeploy after changing any NEXT_PUBLIC_ variable"
+      ],
+      "futureImprovements": [
+        "Protect POST /allbooks and the /borrows routes with verifyToken and req.user.email, matching the /my-books pattern"
+      ]
+    },
+    {
+      "id": "fitLog",
+      "name": "FitLog",
+      "subtitle": "Workout Library",
+      "tagline": "Train with intent. Log every set.",
+      "type": "Front-end web application (API-driven)",
+      "status": "Live / Deployed",
+      "images": [
+        "/Pictures/p3.1.png",
+        "/Pictures/p3,2.png",
+        "/Pictures/p3.3.png",
+        "/Pictures/p3.4.png",
+        "/Pictures/p3.5.png",
+        "/Pictures/p3.6.png"
+      ],
+      "origin": "Frontend development assignment",
+      "author": {
+        "name": "Partho Mukherjee",
+        "email": "parthomukherjee582@gmail.com",
+        "github": "https://github.com/Partho-Mukherjee2003"
+      },
+      "liveLink": "https://my-fit-log-app.vercel.app/",
+      "repo": null,
+      "repoNote": "Repository link is not given in the README (placeholder only). Add it here.",
+      "shortDescription": "FitLog is a modern, fully responsive workout tracking web app. Users browse a curated library of exercises, build a daily workout plan, save lifts for later and track progress in a sleek dark, gym-inspired UI, with live data fetched from an external API.",
+      "features": [
+        "Fully responsive, mobile-first dark-themed UI",
+        "Dynamic workout library fetched from an external API",
+        "Rich exercise cards: image, muscle-group tags, equipment, duration, calories, rating",
+        "Responsive 3-column exercise grid",
+        "Today's Plan and Saved for Later lists via global Context",
+        "Duplicate-prevention logic when adding workouts",
+        "Live stats on My Plan: total exercises, minutes and calories",
+        "Sort By dropdown (Duration, Calories, Rating) with instant re-ordering",
+        "Real-time navbar badges for Plan and Saved counts",
+        "Toast notifications for add, save, remove and mark-as-done actions",
+        "Workout detail page with full specs and instructions",
+        "Smooth anchor-scroll from hero CTA to the library",
+        "Custom 404 page"
+      ],
+      "keyTechnologies": [
+        "Next.js (App Router)",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "React Context API",
+        "React Toastify",
+        "Lucide React",
+        "Vercel"
+      ],
+      "techStack": {
+        "framework": "Next.js (App Router)",
+        "uiLibrary": "React",
+        "language": "TypeScript",
+        "styling": "Tailwind CSS",
+        "stateManagement": "React Context API",
+        "notifications": "React Toastify",
+        "icons": "Lucide React",
+        "dataSource": "External API",
+        "deployment": "Vercel"
+      },
+      "pages": [
+        { "name": "Home", "route": "/", "description": "Hero banner and full workout library grid" },
+        { "name": "Workout Detail", "route": "/exercises/[id]", "description": "Full specs, instructions and action buttons" },
+        { "name": "My Plan", "route": "/my-plan", "description": "Today's Plan and Saved tabs with live stats" },
+        { "name": "404 Not Found", "route": "*", "description": "Custom page for unknown routes" }
+      ],
+      "stateManagement": {
+        "approach": "Global React Context",
+        "stores": ["Today's Plan", "Saved items"],
+        "behaviors": [
+          "Duplicate check before adding",
+          "Instant updates across the app",
+          "Navbar badges read list lengths",
+          "Totals derived from the plan list"
+        ]
+      },
+      "design": {
+        "theme": "Dark, high-contrast",
+        "colors": {
+          "background": ["#0d0d0d", "#1a1a1a"],
+          "accent": "#b6f000"
+        },
+        "typography": "Bold, uppercase display headings",
+        "ui": "Pill-shaped badges, buttons and tab toggles",
+        "breakpoints": {
+          "mobile": "< 640px",
+          "tablet": "640px - 1024px",
+          "desktop": "1024px+"
+        }
+      },
+      "scripts": {
+        "install": "npm install",
+        "dev": "npm run dev"
+      },
+      "localUrls": {
+        "client": "http://localhost:3000"
+      },
+      "deploymentNotes": [
+        "Deployed on Vercel"
+      ]
+    },
+    {
+      "id": "bazarDor",
+      "name": "BazarDor",
+      "nameBn": "বাজার দর",
+      "tagline": "প্রয়োজনীয় পণ্যের দাম এক নজরে",
+      "taglineEn": "Prices of essential goods at a glance",
+      "type": "Full-stack web application",
+      "status": "Live / Deployed",
+      "images": [
+        "/Pictures/p2.1.png",
+        "/Pictures/p2.2.png",
+        "/Pictures/p2.3.png",
+        "/Pictures/p2.4.png"
+
+      ],
+      "language": "Bengali (prices in Bengali digits)",
+      "author": {
+        "name": "Partho Mukherjee",
+        "email": "parthomukherjee582@gmail.com",
+        "github": "https://github.com/Partho-Mukherjee2003",
+        "linkedin": "https://www.linkedin.com/in/partho-mukherjee-0012b421b"
+      },
+      "liveLink": "https://my-bazar-dor-app-ir6y.vercel.app/",
+      "repo": "https://github.com/Partho-Mukherjee2003/my-bazar-dor-app",
+      "shortDescription": "BazarDor is a responsive Bangla market-price tracker. It shows the latest prices of rice, pulses, oil, vegetables, fish, meat, dairy and spices across different markets in Bangladesh, with Bengali digits and clear green/red daily change badges.",
+      "features": [
+        "Live price ticker: infinite scrolling marquee with emoji, name, price and up/down change",
+        "Risers and fallers: top 6 products whose prices went up and down today",
+        "Category pages with price sorting (default, low to high, high to low)",
+        "Market-wise details: minimum, maximum and average price with bazaar-by-bazar table (login required)",
+        "Secure authentication with Better Auth: email/password, Google and GitHub",
+        "Profile management: view profile, update name, sign out",
+        "Skeleton loaders for smooth loading",
+        "Toast notifications",
+        "Custom 404 page",
+        "Prices shown in Bengali digits with green/red change badges",
+        "Fully responsive on mobile, tablet and desktop"
+      ],
+      "keyTechnologies": [
+        "Next.js (App Router)",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "DaisyUI",
+        "HeroUI",
+        "Better Auth",
+        "MongoDB",
+        "React Toastify",
+        "react-marquee-text",
+        "Vercel"
+      ],
+      "techStack": {
+        "framework": ["Next.js (App Router)", "React", "TypeScript"],
+        "styling": ["Tailwind CSS", "DaisyUI", "HeroUI"],
+        "authentication": {
+          "library": "Better Auth",
+          "methods": ["Email/Password", "Google", "GitHub"]
+        },
+        "database": "MongoDB",
+        "uiExtras": ["React Toastify", "react-marquee-text"],
+        "deployment": "Vercel"
+      },
+      "pages": [
+        { "name": "Home", "route": "/", "access": "public", "description": "Hero, risers, fallers, all products" },
+        { "name": "Category", "route": "/category/[slug]", "access": "public", "description": "Category products with sorting" },
+        { "name": "Product Details", "route": "/product/[Id]", "access": "login required", "description": "Price summary and market-wise prices" },
+        { "name": "Sign In", "route": "/Sign-in", "access": "public", "description": "Authentication" },
+        { "name": "Sign Up", "route": "/Sign-up", "access": "public", "description": "Authentication" },
+        { "name": "Profile", "route": "/Profile", "access": "login required", "description": "Profile and update name" }
+      ],
+      "environmentVariables": [
+        "MONGOBD_URL",
+        "BETTER_AUTH_SECRET",
+        "BETTER_AUTH_URL",
+        "GOOGLE_CLIENT_ID",
+        "GOOGLE_CLIENT_SECRET",
+        "GITHUB_CLIENT_ID",
+        "GITHUB_CLIENT_SECRET"
+      ],
+      "environmentNotes": [
+        "The name MONGOBD_URL is spelled this way on purpose; it matches the current code in src/lib/auth.ts"
+      ],
+      "scripts": {
+        "install": "npm install",
+        "dev": "npm run dev"
+      },
+      "localUrls": {
+        "client": "http://localhost:3000"
+      },
+      "deploymentNotes": [
+        "Deployed on Vercel",
+        "Set BETTER_AUTH_URL to the production URL",
+        "Add Google and GitHub OAuth callback URLs for the production domain"
+      ],
+      "disclaimer": {
+        "bn": "সকল দাম সম্ভাব্য; বাজার অবস্থার ওপর নির্ভর করে পরিবর্তিত হয়।",
+        "en": "All prices are approximate and may change with market conditions."
+      }
+    }
+  ]
+}

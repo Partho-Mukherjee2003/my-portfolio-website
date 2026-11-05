@@ -4,6 +4,8 @@ import "./globals.css";
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
 import PageNavigation from './Components/Navigation'
+import { Suspense } from "react";
+import NavSkeleton from "./Components/NavSkeleton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,10 +29,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-screen flex-col bg-[#0B0F19]">
-        <NavBar />
-        <main className="flex-1">{children}</main>
-        <PageNavigation />
-        <Footer />
+        <Suspense fallback={<NavSkeleton/>}>
+          <NavBar />
+          <main className="flex-1">{children}</main>
+          <PageNavigation />
+          <Footer />
+        </Suspense>
       </body>
     </html>
   );
