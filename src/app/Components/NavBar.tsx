@@ -9,11 +9,11 @@ import { usePathname } from "next/navigation";
  * Fill in each `href` later (e.g. '/skills'). Until then they stay empty.
  */
 const NAV_LINKS = [
-  { label: "Skills", href: "" },
+  { label: "Skills", href: "/skill" },
   { label: "About Me", href: "" },
   { label: "Education", href: "" },
   { label: "Projects", href: "" },
-  { label: "Contract", href: "" },
+  { label: "Contract", href: "/contract" },
 ];
 
 const NavBar = () => {
@@ -55,9 +55,9 @@ const NavBar = () => {
       >
         {/* ---------- Logo ---------- */}
         <Link
-          href=""
+          href="/"
           onClick={() => setActiveLabel("")}
-          className="cursor-pointer rounded text-2xl font-semibold tracking-tight text-[#F3F4F6] transition-colors duration-200 hover:text-[#3B82F6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3B82F6]"
+          className="cursor-pointer rounded text-2xl font-semibold tracking-tight text-[#F3F4F6] transition-colors duration-200 hover:text-[#3B82F6]  focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3B82F6]"
         >
           Partho
           <span className="text-[#3B82F6]">.</span>
