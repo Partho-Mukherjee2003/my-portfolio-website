@@ -55,7 +55,7 @@ const NavBar = () => {
       >
         {/* ---------- Logo ---------- */}
         <Link
-          href="/"
+          href=""
           onClick={() => setActiveLabel("")}
           className="cursor-pointer rounded text-2xl font-semibold tracking-tight text-[#F3F4F6] transition-colors duration-200 hover:text-[#3B82F6]  focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3B82F6]"
         >

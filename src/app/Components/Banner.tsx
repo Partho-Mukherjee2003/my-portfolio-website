@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -19,7 +19,7 @@ const SLIDES = [
   { label: "Projects", Component: ProjectsSlide },
 ];
 
-const HeroBanner = () => {
+const Banner = () => {
   const swiperRef = useRef<SwiperType | null>(null);
 
   // Real index (ignores Swiper's loop clones). Drives the slide animations and the dots.
@@ -47,26 +47,28 @@ const HeroBanner = () => {
         />
 
         {/* ---------- Slider ---------- */}
-        <Swiper
-          modules={[Autoplay, EffectFade]}
-          effect="fade"
-          fadeEffect={{ crossFade: true }}
-          loop
-          speed={800}
-          autoplay={{
-            delay: 4500, // 4.5 seconds per slide
-            disableOnInteraction: false, // keep rotating after a manual click
-            pauseOnMouseEnter: false,
-          }}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-        >
-          {SLIDES.map(({ label, Component }, i) => (
-            <SwiperSlide key={label}>
-              <Component isActive={activeIndex === i} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <Suspense fallback={<h1>Loadding.....</h1>}>
+          <Swiper
+            modules={[Autoplay, EffectFade]}
+            effect="fade"
+            fadeEffect={{ crossFade: true }}
+            loop
+            speed={800}
+            autoplay={{
+              delay: 4500, // 4.5 seconds per slide
+              disableOnInteraction: false, // keep rotating after a manual click
+              pauseOnMouseEnter: false,
+            }}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+          >
+            {SLIDES.map(({ label, Component }, i) => (
+              <SwiperSlide key={label}>
+                <Component isActive={activeIndex === i} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </Suspense>
 
         {/* ---------- Pagination dots ---------- */}
         <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1">
@@ -94,4 +96,4 @@ const HeroBanner = () => {
   );
 };
 
-export default HeroBanner;
+export default Banner;
