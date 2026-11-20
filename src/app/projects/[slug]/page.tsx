@@ -6,6 +6,10 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+type ClientProject = React.ComponentProps<
+  typeof ProjectDetailsClient
+>["project"];
+
 export async function generateStaticParams() {
   return projectsData.projects.map((project) => ({
     slug: project.id.toLowerCase(),
@@ -43,7 +47,7 @@ export default async function ProjectDetailsPage({ params }: PageProps) {
 
   return (
     <ProjectDetailsClient
-      project={project}
+      project={project as unknown as ClientProject}
       prevProject={prevProject}
       nextProject={nextProject}
     />
