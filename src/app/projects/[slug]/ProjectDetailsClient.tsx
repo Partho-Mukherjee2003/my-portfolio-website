@@ -139,8 +139,8 @@ export interface ProjectData {
   pages?: ProjectPageInfo[];
   apiBaseUrl?: string;
   apiEndpoints?: ApiEndpoint[];
-  statusCodes?: Record<string, string>;
-  dataModels?: Record<string, string[]>;
+  statusCodes?: Record<string, string | undefined>;
+  dataModels?: Record<string, string[] | undefined>;
   environmentVariables?: { client?: string[]; server?: string[] } | string[];
   environmentNotes?: string[];
   prerequisites?: string[];
