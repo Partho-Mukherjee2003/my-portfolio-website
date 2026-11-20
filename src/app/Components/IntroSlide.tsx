@@ -57,7 +57,7 @@ export default function IntroSlide({ isActive }: Props) {
         >
           <GlowButton href="/contract">Contact Me</GlowButton>
           <GlowButton
-            href="/Partho_Mukherjee_Resume.pdf"
+            href="/Pictures/Partho_Mukherjee_Resume.pdf"
             variant="outline"
             download
           >
