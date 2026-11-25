@@ -17,7 +17,6 @@
         "/Pictures/p4-7.png",
         "/Pictures/p4-8.png",
         "/Pictures/p4-9.png"
-
       ],
       "author": {
         "name": "Partho Mukherjee",
@@ -425,7 +424,492 @@
         "Allow vendors to edit their business name from the profile page",
         "Add the optional profile image upload field on the Sign Up page"
       ]
-    },
+    }
+,
+    {
+      "id": "pizzaDot",
+      "name": "Pizza Dot",
+      "tagline": "Hot, fresh pizza — built your way, delivered fast.",
+      "type": "Full-stack web application",
+      "status": "Live / Deployed",
+      "origin": "AICTE OIB-SIP Web Development Internship (Level 3), Oasis Infobyte",
+      "images": [
+        "/Pictures/pizzadot/profilep5.png",
+        "/Pictures/pizzadot/p5.1.png",
+        "/Pictures/pizzadot/p5.2.png",
+        "/Pictures/pizzadot/p5.3.png",
+        "/Pictures/pizzadot/p5.4.png",
+        "/Pictures/pizzadot/p5.5.png",
+        "/Pictures/pizzadot/p5.6.png",
+        "/Pictures/pizzadot/p5.7.png",
+        "/Pictures/pizzadot/p5.8.png",
+        "/Pictures/pizzadot/p5.9.png",
+        "/Pictures/pizzadot/p5.10.png",
+        "/Pictures/pizzadot/p5.11.png",
+        "/Pictures/pizzadot/p5.12.png",
+        "/Pictures/pizzadot/p5.13.png",
+        "/Pictures/pizzadot/p5.14.png",
+        "/Pictures/pizzadot/p5.15.png"
+      ],
+      "author": {
+        "name": "Partho Mukherjee",
+        "email": "parthomukherjee582@gmail.com",
+        "github": "https://github.com/Partho-Mukherjee2003"
+      },
+      "liveLink": "https://pizzadot-client.vercel.app/",
+      "serverLiveLink": "https://pizzadot-server.vercel.app/",
+      "clientRepo": "https://github.com/Partho-Mukherjee2003/OIBSIP",
+      "serverRepo": "https://github.com/Partho-Mukherjee2003/OIBSIP",
+      "repoNote": "Client and server live in a single monorepo (WebDev-L3-PizzaDeliveryApp/client and /server).",
+      "shortDescription": "Pizza Dot is a full-stack pizza delivery app built during the AICTE OIB-SIP Web Development Internship (Level 3) at Oasis Infobyte. Customers browse the menu, build their own custom pizza (base, sauce, cheese, vegetables), order through a cart, and pay with Razorpay in test mode, while admins manage orders, inventory, and stock with automated low-stock email alerts. It has JWT authentication with email verification and Google login, role-based dashboards, and real-time order status tracking.",
+      "features": [
+        "Secure authentication with JWT (email/password login, email verification, forgot/reset password, and Google login)",
+        "Role-based access for Customer and Admin with separate dashboards",
+        "Server-side role verification (verifyToken + verifyAdmin middleware, 401/403)",
+        "Custom Pizza Builder: choose base, sauce, cheese, and multiple vegetables with live price calculation",
+        "Menu with 8 pizzas, search by name, category filter (Veg / Non-Veg), and sorting by price or name",
+        "Category cards on the home page linking to a filtered menu (Veg, Non-Veg, Under ₹400)",
+        "Cart with quantity controls, live total, and checkout with a delivery address dialog (country, state, city, address, phone)",
+        "Razorpay test-mode checkout with HMAC signature verification",
+        "Real-time order status tracking: Order Received → In Kitchen → Sent to Delivery (auto-refresh)",
+        "My Orders page with order timeline, payment status, and delivery address",
+        "User order cancellation for unpaid orders before kitchen work starts",
+        "Remove from List: hide finished or cancelled orders from the user's own list",
+        "Admin order management: change order status, cancel unpaid orders, and remove finished orders from the list",
+        "Admin inventory dashboard: view and update stock for bases, sauces, cheeses, and vegetables",
+        "Automatic stock decrement on every custom pizza order",
+        "Automated low-stock email alert (Node-Cron + Nodemailer) when any item drops below 20",
+        "Dynamic customer reviews: submit a review with star rating, only 4-star and 5-star reviews are shown",
+        "Profile page with name and photo update",
+        "Toast notifications for all success and error messages (no alert())",
+        "Loading spinners on every data page",
+        "Fully responsive design (mobile, tablet, desktop)",
+        "Password validation (min 6 chars)"
+      ],
+      "keyTechnologies": [
+        "Express.js",
+        "Node.js",
+        "React (Vite)",
+        "MongoDB Atlas",
+        "Mongoose",
+        "JWT",
+        "Razorpay",
+        "Tailwind CSS",
+        "React Router",
+        "React Hot Toast",
+        "Nodemailer",
+        "Node-Cron",
+        "Google OAuth",
+        "Vercel"
+      ],
+      "techStack": {
+        "frontend": {
+          "framework": "React (Vite)",
+          "language": "JavaScript (ES6+)",
+          "styling": "Tailwind CSS",
+          "uiComponents": "Custom reusable components (Tailwind CSS + React Icons)",
+          "authentication": "JWT (localStorage) + Google OAuth (@react-oauth/google)",
+          "slider": "Custom auto-rotating banner + rolling pizza carousel",
+          "notifications": "React Hot Toast",
+          "icons": [
+            "React Icons"
+          ],
+          "imageUpload": "Profile photo by URL (e.g. ImgBB)"
+        },
+        "backend": {
+          "runtime": "Node.js 20+",
+          "framework": "Express.js",
+          "database": "MongoDB Atlas (Mongoose)",
+          "authVerification": "jsonwebtoken (JWT)",
+          "other": [
+            "cors",
+            "dotenv",
+            "bcryptjs",
+            "nodemailer",
+            "node-cron",
+            "razorpay",
+            "nodemon (dev)"
+          ]
+        },
+        "database": {
+          "name": "pizzadot",
+          "collections": [
+            "users",
+            "pizzas",
+            "inventories",
+            "orders",
+            "reviews"
+          ]
+        },
+        "deployment": {
+          "client": "Vercel",
+          "server": "Vercel"
+        }
+      },
+      "architecture": {
+        "pattern": "Separate client and server folders in one monorepo",
+        "authFlow": [
+          "User registers with email/password; a verification link is emailed before login is allowed",
+          "User logs in with email/password or Google; server returns a JWT stored in localStorage",
+          "Client sends the JWT as Authorization: Bearer <token> on protected requests",
+          "Server verifies the token (verifyToken middleware) and loads the user for ownership checks",
+          "Admin-only routes are protected by verifyAdmin middleware (403 for non-admin users)"
+        ]
+      },
+      "pages": [
+        {
+          "name": "Home",
+          "route": "/",
+          "access": "public"
+        },
+        {
+          "name": "Menu",
+          "route": "/menu",
+          "access": "public"
+        },
+        {
+          "name": "Custom Pizza Builder",
+          "route": "/builder",
+          "access": "public (login required to order)"
+        },
+        {
+          "name": "Cart",
+          "route": "/cart",
+          "access": "public (login required to checkout)"
+        },
+        {
+          "name": "Login",
+          "route": "/login",
+          "access": "public"
+        },
+        {
+          "name": "Register",
+          "route": "/register",
+          "access": "public"
+        },
+        {
+          "name": "Forgot Password",
+          "route": "/forgot-password",
+          "access": "public"
+        },
+        {
+          "name": "Reset Password",
+          "route": "/reset-password/:token",
+          "access": "public"
+        },
+        {
+          "name": "Verify Email",
+          "route": "/verify",
+          "access": "public"
+        },
+        {
+          "name": "Dashboard",
+          "route": "/dashboard",
+          "access": "private (user)"
+        },
+        {
+          "name": "My Orders",
+          "route": "/my-orders",
+          "access": "private (user)"
+        },
+        {
+          "name": "Profile",
+          "route": "/profile",
+          "access": "private"
+        },
+        {
+          "name": "Admin Dashboard",
+          "route": "/admin",
+          "access": "private (admin)"
+        },
+        {
+          "name": "Admin Orders",
+          "route": "/admin/orders",
+          "access": "private (admin)"
+        },
+        {
+          "name": "Admin Inventory",
+          "route": "/admin/inventory",
+          "access": "private (admin)"
+        }
+      ],
+      "apiBaseUrl": "https://pizzadot-server.vercel.app",
+      "apiEndpoints": [
+        {
+          "method": "GET",
+          "path": "/",
+          "description": "Server health check",
+          "auth": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/register",
+          "description": "Register with email verification",
+          "auth": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/login",
+          "description": "Login with email/password, returns JWT",
+          "auth": "public"
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/me",
+          "description": "Get the logged-in user's profile",
+          "auth": "jwt"
+        },
+        {
+          "method": "GET",
+          "path": "/api/auth/verify/:token",
+          "description": "Verify email and redirect to the client",
+          "auth": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/forgot-password",
+          "description": "Send password reset email",
+          "auth": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/reset-password/:token",
+          "description": "Reset password with token",
+          "auth": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/auth/google",
+          "description": "Login or register with Google access token",
+          "auth": "public"
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/auth/profile",
+          "description": "Update name and profile photo",
+          "auth": "jwt"
+        },
+        {
+          "method": "GET",
+          "path": "/api/pizzas",
+          "description": "All available pizzas",
+          "auth": "public"
+        },
+        {
+          "method": "GET",
+          "path": "/api/inventory",
+          "description": "All inventory items (bases, sauces, cheeses, vegetables)",
+          "auth": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/orders",
+          "description": "Create a custom pizza order (decrements stock)",
+          "auth": "jwt"
+        },
+        {
+          "method": "POST",
+          "path": "/api/orders/cart",
+          "description": "Create an order from cart menu pizzas",
+          "auth": "jwt"
+        },
+        {
+          "method": "GET",
+          "path": "/api/orders/my",
+          "description": "Get the logged-in user's orders",
+          "auth": "jwt"
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/orders/:id/cancel",
+          "description": "Cancel own unpaid order before kitchen work starts",
+          "auth": "jwt"
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/orders/:id/hide",
+          "description": "Hide an order from the user's own list",
+          "auth": "jwt"
+        },
+        {
+          "method": "POST",
+          "path": "/api/payment/create-order",
+          "description": "Create a Razorpay order for payment",
+          "auth": "jwt"
+        },
+        {
+          "method": "POST",
+          "path": "/api/payment/verify",
+          "description": "Verify Razorpay payment signature and mark Paid",
+          "auth": "jwt"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/orders",
+          "description": "All orders with user info",
+          "auth": "jwt (admin)"
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/admin/orders/:id/status",
+          "description": "Change order status",
+          "auth": "jwt (admin)"
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/admin/orders/:id/cancel",
+          "description": "Cancel an unpaid order",
+          "auth": "jwt (admin)"
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/admin/orders/:id/hide",
+          "description": "Hide an order from the admin list",
+          "auth": "jwt (admin)"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/inventory",
+          "description": "All inventory items",
+          "auth": "jwt (admin)"
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/admin/inventory/:id",
+          "description": "Update stock of one inventory item",
+          "auth": "jwt (admin)"
+        },
+        {
+          "method": "POST",
+          "path": "/api/reviews",
+          "description": "Submit a review with rating",
+          "auth": "jwt"
+        },
+        {
+          "method": "GET",
+          "path": "/api/reviews",
+          "description": "All 4-star and 5-star reviews",
+          "auth": "public"
+        }
+      ],
+      "statusCodes": {
+        "200/201": "Success / created",
+        "400": "Invalid data, out of stock, or action not allowed",
+        "401": "Missing, invalid or expired token",
+        "403": "Forbidden: not your order or admin access only",
+        "404": "Order, item or user not found",
+        "500": "Server error"
+      },
+      "dataModels": {
+        "users": [
+          "_id",
+          "name",
+          "email",
+          "password",
+          "role (user | admin)",
+          "image",
+          "isVerified",
+          "verificationToken",
+          "resetPasswordToken",
+          "resetPasswordExpire"
+        ],
+        "pizzas": [
+          "_id",
+          "name",
+          "description",
+          "price",
+          "image",
+          "category (Veg | Non-Veg)",
+          "isAvailable"
+        ],
+        "inventories": [
+          "_id",
+          "name",
+          "category (base | sauce | cheese | veg)",
+          "price",
+          "stock"
+        ],
+        "orders": [
+          "_id",
+          "user",
+          "items [{ name, price, quantity }]",
+          "totalAmount",
+          "status (Order Received | In Kitchen | Sent to Delivery | Cancelled)",
+          "paymentStatus (Pending | Paid)",
+          "razorpayOrderId",
+          "razorpayPaymentId",
+          "address { country, state, city, details }",
+          "phone",
+          "cancelledBy (user | admin)",
+          "hiddenForUser",
+          "hiddenForAdmin"
+        ],
+        "reviews": [
+          "_id",
+          "user",
+          "name",
+          "email",
+          "image",
+          "message",
+          "rating (1-5)"
+        ]
+      },
+      "environmentVariables": {
+        "client": [
+          "VITE_SERVER_URL",
+          "VITE_GOOGLE_CLIENT_ID"
+        ],
+        "server": [
+          "PORT",
+          "MONGODB_URI",
+          "JWT_SECRET",
+          "EMAIL_USER",
+          "EMAIL_PASS",
+          "RAZORPAY_KEY_ID",
+          "RAZORPAY_KEY_SECRET",
+          "ADMIN_EMAIL",
+          "CLIENT_URL",
+          "SERVER_URL"
+        ]
+      },
+      "scripts": {
+        "client": {
+          "dev": "Start the development server",
+          "build": "Create a production build",
+          "preview": "Preview the production build"
+        },
+        "server": {
+          "dev": "Start the development server with nodemon",
+          "start": "node index.js"
+        }
+      },
+      "prerequisites": [
+        "Node.js 20 or newer",
+        "MongoDB Atlas cluster",
+        "Google OAuth client ID",
+        "Razorpay account (test mode)",
+        "Gmail App Password for email verification and low-stock alerts",
+        "Pizza Dot server running locally or deployed"
+      ],
+      "localUrls": {
+        "client": "http://localhost:5173",
+        "server": "http://localhost:5000"
+      },
+      "deploymentNotes": [
+        "Add all environment variables in Vercel with production URLs (client and server projects)",
+        "Add Google OAuth JavaScript origin: https://pizzadot-client.vercel.app (no redirect URI needed for the access-token flow)",
+        "Allow Vercel network access in MongoDB Atlas (0.0.0.0/0)",
+        "Server CLIENT_URL must exactly match the client URL (email verify and reset links depend on it)",
+        "The hourly low-stock email cron runs only on a long-running server; it is skipped on Vercel serverless",
+        "Redeploy both projects after changing any environment variable"
+      ],
+      "futureImprovements": [
+        "Add order search and filter in the admin orders panel",
+        "Move the low-stock alert cron to a scheduled external service so it runs on serverless",
+        "Add a delivery tracking map on the My Orders page"
+      ]
+    }
+,
     {
       "apiBaseUrl": "https://booknook-server-site.vercel.app",
       "apiEndpoints": [
@@ -603,6 +1087,7 @@
       ],
       "id": "bookNook",
       "images": [
+        "/Pictures/profilep1.1.png",
         "/Pictures/p1.1.png",
         "/Pictures/p1.2.png",
         "/Pictures/p1.3.png",
@@ -702,7 +1187,7 @@
         }
       },
       "serverLiveLink": "https://booknook-server-site.vercel.app/",
-      "serverRepo": "https://github.com/Partho-Mukherjee2003/book-nook-client-site",
+      "serverRepo": "https://github.com/Partho-Mukherjee2003/book-nook-server-site",
       "shortDescription": "BookNook is a small online library where readers can browse a shared collection, add their own books, borrow a book for 14 days, and return it when done. Each user manages only their own books and borrows, protected by Better Auth and JWT verification.",
       "status": "Live / Deployed",
       "statusCodes": {
@@ -754,131 +1239,8 @@
         }
       },
       "type": "Full-stack web application"
-    },
-    {
-      "author": {
-        "email": "parthomukherjee582@gmail.com",
-        "github": "https://github.com/Partho-Mukherjee2003",
-        "name": "Partho Mukherjee"
-      },
-      "deploymentNotes": [
-        "Deployed on Vercel"
-      ],
-      "design": {
-        "breakpoints": {
-          "desktop": "1024px+",
-          "mobile": "< 640px",
-          "tablet": "640px - 1024px"
-        },
-        "colors": {
-          "accent": "#b6f000",
-          "background": [
-            "#0d0d0d",
-            "#1a1a1a"
-          ]
-        },
-        "theme": "Dark, high-contrast",
-        "typography": "Bold, uppercase display headings",
-        "ui": "Pill-shaped badges, buttons and tab toggles"
-      },
-      "features": [
-        "Fully responsive, mobile-first dark-themed UI",
-        "Dynamic workout library fetched from an external API",
-        "Rich exercise cards: image, muscle-group tags, equipment, duration, calories, rating",
-        "Responsive 3-column exercise grid",
-        "Today's Plan and Saved for Later lists via global Context",
-        "Duplicate-prevention logic when adding workouts",
-        "Live stats on My Plan: total exercises, minutes and calories",
-        "Sort By dropdown (Duration, Calories, Rating) with instant re-ordering",
-        "Real-time navbar badges for Plan and Saved counts",
-        "Toast notifications for add, save, remove and mark-as-done actions",
-        "Workout detail page with full specs and instructions",
-        "Smooth anchor-scroll from hero CTA to the library",
-        "Custom 404 page"
-      ],
-      "id": "fitLog",
-      "images": [
-        "/Pictures/p3.1.png",
-        "/Pictures/p3,2.png",
-        "/Pictures/p3.3.png",
-        "/Pictures/p3.4.png",
-        "/Pictures/p3.5.png",
-        "/Pictures/p3.6.png"
-      ],
-      "keyTechnologies": [
-        "Next.js (App Router)",
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "React Context API",
-        "React Toastify",
-        "Lucide React",
-        "Vercel"
-      ],
-      "liveLink": "https://my-fit-log-app.vercel.app/",
-      "localUrls": {
-        "client": "http://localhost:3000"
-      },
-      "name": "FitLog",
-      "origin": "Frontend development assignment",
-      "pages": [
-        {
-          "description": "Hero banner and full workout library grid",
-          "name": "Home",
-          "route": "/"
-        },
-        {
-          "description": "Full specs, instructions and action buttons",
-          "name": "Workout Detail",
-          "route": "/exercises/[id]"
-        },
-        {
-          "description": "Today's Plan and Saved tabs with live stats",
-          "name": "My Plan",
-          "route": "/my-plan"
-        },
-        {
-          "description": "Custom page for unknown routes",
-          "name": "404 Not Found",
-          "route": "*"
-        }
-      ],
-      "repo": null,
-      "repoNote": "Repository link is not given in the README (placeholder only). Add it here.",
-      "scripts": {
-        "dev": "npm run dev",
-        "install": "npm install"
-      },
-      "shortDescription": "FitLog is a modern, fully responsive workout tracking web app. Users browse a curated library of exercises, build a daily workout plan, save lifts for later and track progress in a sleek dark, gym-inspired UI, with live data fetched from an external API.",
-      "stateManagement": {
-        "approach": "Global React Context",
-        "behaviors": [
-          "Duplicate check before adding",
-          "Instant updates across the app",
-          "Navbar badges read list lengths",
-          "Totals derived from the plan list"
-        ],
-        "stores": [
-          "Today's Plan",
-          "Saved items"
-        ]
-      },
-      "status": "Live / Deployed",
-      "subtitle": "Workout Library",
-      "tagline": "Train with intent. Log every set.",
-      "techStack": {
-        "dataSource": "External API",
-        "deployment": "Vercel",
-        "framework": "Next.js (App Router)",
-        "icons": "Lucide React",
-        "language": "TypeScript",
-        "notifications": "React Toastify",
-        "stateManagement": "React Context API",
-        "styling": "Tailwind CSS",
-        "uiLibrary": "React"
-      },
-      "type": "Front-end web application (API-driven)"
-    },
+    }
+,
     {
       "author": {
         "email": "parthomukherjee582@gmail.com",
@@ -922,6 +1284,7 @@
       ],
       "id": "bazarDor",
       "images": [
+        "/Pictures/profilep2.1.png",
         "/Pictures/p2.1.png",
         "/Pictures/p2.2.png",
         "/Pictures/p2.3.png",
@@ -1021,6 +1384,133 @@
         ]
       },
       "type": "Full-stack web application"
+    },
+    {
+      "author": {
+        "email": "parthomukherjee582@gmail.com",
+        "github": "https://github.com/Partho-Mukherjee2003",
+        "name": "Partho Mukherjee"
+      },
+      "deploymentNotes": [
+        "Deployed on Vercel"
+      ],
+      "design": {
+        "breakpoints": {
+          "desktop": "1024px+",
+          "mobile": "< 640px",
+          "tablet": "640px - 1024px"
+        },
+        "colors": {
+          "accent": "#b6f000",
+          "background": [
+            "#0d0d0d",
+            "#1a1a1a"
+          ]
+        },
+        "theme": "Dark, high-contrast",
+        "typography": "Bold, uppercase display headings",
+        "ui": "Pill-shaped badges, buttons and tab toggles"
+      },
+      "features": [
+        "Fully responsive, mobile-first dark-themed UI",
+        "Dynamic workout library fetched from an external API",
+        "Rich exercise cards: image, muscle-group tags, equipment, duration, calories, rating",
+        "Responsive 3-column exercise grid",
+        "Today's Plan and Saved for Later lists via global Context",
+        "Duplicate-prevention logic when adding workouts",
+        "Live stats on My Plan: total exercises, minutes and calories",
+        "Sort By dropdown (Duration, Calories, Rating) with instant re-ordering",
+        "Real-time navbar badges for Plan and Saved counts",
+        "Toast notifications for add, save, remove and mark-as-done actions",
+        "Workout detail page with full specs and instructions",
+        "Smooth anchor-scroll from hero CTA to the library",
+        "Custom 404 page"
+      ],
+      "id": "fitLog",
+      "images": [
+        "/Pictures/profilep3.1.png",
+        "/Pictures/p3.1.png",
+        "/Pictures/p3.2.png",
+        "/Pictures/p3.3.png",
+        "/Pictures/p3.4.png",
+        "/Pictures/p3.5.png",
+        "/Pictures/p3.6.png"
+      ],
+      "keyTechnologies": [
+        "Next.js (App Router)",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "React Context API",
+        "React Toastify",
+        "Lucide React",
+        "Vercel"
+      ],
+      "liveLink": "https://my-fit-log-app.vercel.app/",
+      "localUrls": {
+        "client": "http://localhost:3000"
+      },
+      "name": "FitLog",
+      "origin": "Frontend development assignment",
+      "pages": [
+        {
+          "description": "Hero banner and full workout library grid",
+          "name": "Home",
+          "route": "/"
+        },
+        {
+          "description": "Full specs, instructions and action buttons",
+          "name": "Workout Detail",
+          "route": "/exercises/[id]"
+        },
+        {
+          "description": "Today's Plan and Saved tabs with live stats",
+          "name": "My Plan",
+          "route": "/my-plan"
+        },
+        {
+          "description": "Custom page for unknown routes",
+          "name": "404 Not Found",
+          "route": "*"
+        }
+      ],
+      "repo": null,
+      "repoNote": "Repository link is not given in the README (placeholder only). Add it here.",
+      "scripts": {
+        "dev": "npm run dev",
+        "install": "npm install"
+      },
+      "shortDescription": "FitLog is a modern, fully responsive workout tracking web app. Users browse a curated library of exercises, build a daily workout plan, save lifts for later and track progress in a sleek dark, gym-inspired UI, with live data fetched from an external API.",
+      "stateManagement": {
+        "approach": "Global React Context",
+        "behaviors": [
+          "Duplicate check before adding",
+          "Instant updates across the app",
+          "Navbar badges read list lengths",
+          "Totals derived from the plan list"
+        ],
+        "stores": [
+          "Today's Plan",
+          "Saved items"
+        ]
+      },
+      "status": "Live / Deployed",
+      "subtitle": "Workout Library",
+      "tagline": "Train with intent. Log every set.",
+      "techStack": {
+        "dataSource": "External API",
+        "deployment": "Vercel",
+        "framework": "Next.js (App Router)",
+        "icons": "Lucide React",
+        "language": "TypeScript",
+        "notifications": "React Toastify",
+        "stateManagement": "React Context API",
+        "styling": "Tailwind CSS",
+        "uiLibrary": "React"
+      },
+      "type": "Front-end web application (API-driven)"
     }
+
+
   ]
 }
